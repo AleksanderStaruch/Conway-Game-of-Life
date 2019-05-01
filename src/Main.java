@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Main extends JFrame{
 
-    private int w=5,h=5;
+    private int w=15,h=15;
     private boolean b=false;
     private void step(MyButton [][]buttons){
         int [][]ints=new int[w][h];
