@@ -5,7 +5,7 @@ import java.util.Random;
 public class Main extends JFrame{
 
     private int w=5,h=5;
-
+    private boolean b=false;
     private void step(MyButton [][]buttons){
         int [][]ints=new int[w][h];
         boolean [][]booleans=new boolean[w][h];
@@ -121,37 +121,30 @@ public class Main extends JFrame{
             }
         });
 
+
         start.addActionListener(e->{
             Thread thread=new Thread(()->{
                 while(true){
-                    step(buttons);
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            });
-
-            if(start.getText().equals("START")){
-                thread.start();
-                start.setText("STOP");
-            }else{
-                thread.stop();
-                start.setText("START");
-            }
-            new Thread(()->{
-                    while(true){
+                    if(b){
                         step(buttons);
                         try {
                             Thread.sleep(1000);
-                        } catch (InterruptedException e1) {
+                        } catch (Exception e1) {
                             e1.printStackTrace();
                         }
                     }
-                }
-            ).start();
 
+                }
+            });
+            thread.start();
+
+            if(start.getText().equals("START")){
+                b=true;
+                start.setText("STOP");
+            }else{
+                b=false;
+                start.setText("START");
+            }
         });
 
         this.setTitle("PSM6");
