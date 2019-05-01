@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Main extends JFrame{
 
-    private int w=50,h=50;
+    private int w=10,h=10;
 
     private void step(MyButton [][]buttons){
         MyButton [][]tmpButtons=buttons;
@@ -15,30 +15,38 @@ public class Main extends JFrame{
                     for(int b=-1;b<2;b++){
                         if(a!=0 && b!=0){
                             try{
-                                if(tmpButtons[i][j].b){
-                                    n++;
-                                }
+                                if(buttons[i-a][j-b].b){ n++; }
                             }catch (Exception e){
-                                System.out.println(i+" "+j+" "+e);
+                                //System.out.println(e);
                             }
                         }
                     }
                 }
-                if(n<2){
-                    buttons[i][j].b=false;
+                System.out.print(n+" ");
+                if(tmpButtons[i][j].b){
+                    //zywa komorka
+                    if(n==2 || n==3){
+                        tmpButtons[i][j].b=true;
+                    }else {
+                        tmpButtons[i][j].b=false;
+                    }
+                }else{
+                    //martwa komorka
+                    if(n==3){
+                        tmpButtons[i][j].b=true;
+                    }else{
+                        tmpButtons[i][j].b=false;
+                    }
                 }
-                if(n==3){
-                    buttons[i][j].b=true;
-                }
-                if(n>3){
-                    buttons[i][j].b=false;
-                }
-
-
+            }
+            System.out.println();
+        }
+        for(int i=0;i<w;i++){
+            for(int j=0;j<h;j++){
+                buttons[i][j]=tmpButtons[i][j];
+                buttons[i][j].setIcon();
             }
         }
-
-
     }
 
 
@@ -63,12 +71,12 @@ public class Main extends JFrame{
         for(int i=0;i<w;i++){
             for(int j=0;j<h;j++){
                 MyButton tmp = new MyButton(i,j);
-                centerPanel.add(tmp);
-                buttons[i][j]=tmp;
-
                 tmp.addActionListener(e -> {
                     tmp.setIcon();
+                    buttons[tmp.w][tmp.h].b= tmp.b;
                 });
+                centerPanel.add(tmp);
+                buttons[i][j]=tmp;
             }
         }
 
@@ -101,9 +109,22 @@ public class Main extends JFrame{
             }
         });
 
-
         button1step.addActionListener(e -> {
-            step(buttons);
+            for(int i=0;i<w;i++){
+                for(int j=0;j<h;j++){
+                    System.out.print(buttons[i][j].b+" ");
+                }
+                System.out.println();
+            }
+
+//            step(buttons);
+
+//            for(int i=0;i<w;i++){
+//                for(int j=0;j<h;j++){
+//                    System.out.print(buttons[i][j].b+" ");
+//                }
+//                System.out.println();
+//            }
         });
 
         button5step.addActionListener(e -> {
@@ -113,8 +134,6 @@ public class Main extends JFrame{
         button10step.addActionListener(e -> {
 
         });
-
-
 
         this.setTitle("PSM6");
         this.setVisible(true);
