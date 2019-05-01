@@ -4,54 +4,53 @@ import java.util.Random;
 
 public class Main extends JFrame{
 
-    private int w=10,h=10;
+    private int w=5,h=5;
 
     private void step(MyButton [][]buttons){
-        MyButton [][]tmpButtons=buttons;
+        int [][]ints=new int[w][h];
+        boolean [][]booleans=new boolean[w][h];
+
         for(int i=0;i<w;i++){
             for(int j=0;j<h;j++){
                 int n=0;
                 for(int a=-1;a<2;a++){
                     for(int b=-1;b<2;b++){
-                        if(a!=0 && b!=0){
                             try{
                                 if(buttons[i-a][j-b].b){ n++; }
                             }catch (Exception e){
                                 //System.out.println(e);
                             }
-                        }
+
                     }
                 }
-                System.out.print(n+" ");
-                if(tmpButtons[i][j].b){
+                if(buttons[i][j].b){ n--; }
+                ints[i][j]=n;
+                booleans[i][j]=buttons[i][j].b;
+            }
+        }
+
+        for(int i=0;i<w;i++){
+            for(int j=0;j<h;j++){
+                int n=ints[i][j];
+                if(booleans[i][j]){
                     //zywa komorka
-                    if(n==2 || n==3){
-                        tmpButtons[i][j].b=true;
-                    }else {
-                        tmpButtons[i][j].b=false;
+                    if(!(n==2 || n==3)){
+                        buttons[i][j].setIcon();
                     }
                 }else{
                     //martwa komorka
                     if(n==3){
-                        tmpButtons[i][j].b=true;
-                    }else{
-                        tmpButtons[i][j].b=false;
+                        buttons[i][j].setIcon();
                     }
                 }
             }
-            System.out.println();
         }
-        for(int i=0;i<w;i++){
-            for(int j=0;j<h;j++){
-                buttons[i][j]=tmpButtons[i][j];
-                buttons[i][j].setIcon();
-            }
-        }
+
     }
 
 
 
-    public Main(){
+    private Main(){
         setSize(900,700);
         setLayout(new BorderLayout());
 
@@ -87,12 +86,12 @@ public class Main extends JFrame{
         JButton button1step = new JButton("Jeden ruch");downPanel.add(button1step);
         JButton button5step = new JButton("5 ruchów");downPanel.add(button5step);
         JButton button10step = new JButton("10 ruchów");downPanel.add(button10step);
-        JButton start = new JButton("Start");downPanel.add(start);
+        JButton start = new JButton("START");downPanel.add(start);
 
         clear.addActionListener(e -> {
             for(int i=0;i<w;i++){
                 for(int j=0;j<h;j++){
-                    buttons[i][j].b=false;
+                    buttons[i][j].b=true;
                     buttons[i][j].setIcon();
                 }
             }
@@ -102,36 +101,56 @@ public class Main extends JFrame{
             for(int i=0;i<w;i++){
                 for(int j=0;j<h;j++){
                     Random r = new Random();
-                    boolean tmp=r.nextBoolean();
-                    buttons[i][j].b=tmp;
+                    buttons[i][j].b=r.nextBoolean();
                     buttons[i][j].setIcon();
                 }
             }
         });
 
-        button1step.addActionListener(e -> {
-            for(int i=0;i<w;i++){
-                for(int j=0;j<h;j++){
-                    System.out.print(buttons[i][j].b+" ");
-                }
-                System.out.println();
-            }
-
-//            step(buttons);
-
-//            for(int i=0;i<w;i++){
-//                for(int j=0;j<h;j++){
-//                    System.out.print(buttons[i][j].b+" ");
-//                }
-//                System.out.println();
-//            }
-        });
+        button1step.addActionListener(e -> step(buttons));
 
         button5step.addActionListener(e -> {
-
+            for(int i=0;i<5;i++){
+                step(buttons);
+            }
         });
 
         button10step.addActionListener(e -> {
+            for(int i=0;i<10;i++){
+                step(buttons);
+            }
+        });
+
+        start.addActionListener(e->{
+            Thread thread=new Thread(()->{
+                while(true){
+                    step(buttons);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
+
+            if(start.getText().equals("START")){
+                thread.start();
+                start.setText("STOP");
+            }else{
+                thread.stop();
+                start.setText("START");
+            }
+            new Thread(()->{
+                    while(true){
+                        step(buttons);
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                }
+            ).start();
 
         });
 
