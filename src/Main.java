@@ -4,6 +4,45 @@ import java.util.Random;
 
 public class Main extends JFrame{
 
+    private int w=50,h=50;
+
+    private void step(MyButton [][]buttons){
+        MyButton [][]tmpButtons=buttons;
+        for(int i=0;i<w;i++){
+            for(int j=0;j<h;j++){
+                int n=0;
+                for(int a=-1;a<2;a++){
+                    for(int b=-1;b<2;b++){
+                        if(a!=0 && b!=0){
+                            try{
+                                if(tmpButtons[i][j].b){
+                                    n++;
+                                }
+                            }catch (Exception e){
+                                System.out.println(i+" "+j+" "+e);
+                            }
+                        }
+                    }
+                }
+                if(n<2){
+                    buttons[i][j].b=false;
+                }
+                if(n==3){
+                    buttons[i][j].b=true;
+                }
+                if(n>3){
+                    buttons[i][j].b=false;
+                }
+
+
+            }
+        }
+
+
+    }
+
+
+
     public Main(){
         setSize(900,700);
         setLayout(new BorderLayout());
@@ -16,9 +55,6 @@ public class Main extends JFrame{
         JButton random =new JButton("Losowy stan");upPanel.add(random);
         JButton clear =new JButton("Wyczyść");upPanel.add(clear);
 
-
-        int w=50,h=50;
-        boolean [][]tab=new boolean[w][h];
         MyButton [][]buttons = new MyButton[w][h];
 
         JPanel centerPanel = new JPanel();
@@ -26,14 +62,12 @@ public class Main extends JFrame{
         this.add(centerPanel,BorderLayout.CENTER);
         for(int i=0;i<w;i++){
             for(int j=0;j<h;j++){
-                tab[i][j]=false;
                 MyButton tmp = new MyButton(i,j);
                 centerPanel.add(tmp);
                 buttons[i][j]=tmp;
 
                 tmp.addActionListener(e -> {
                     tmp.setIcon();
-                    tab[tmp.w][tmp.h]=tmp.b;
                 });
             }
         }
@@ -50,7 +84,6 @@ public class Main extends JFrame{
         clear.addActionListener(e -> {
             for(int i=0;i<w;i++){
                 for(int j=0;j<h;j++){
-                    tab[i][j]=false;
                     buttons[i][j].b=false;
                     buttons[i][j].setIcon();
                 }
@@ -62,11 +95,23 @@ public class Main extends JFrame{
                 for(int j=0;j<h;j++){
                     Random r = new Random();
                     boolean tmp=r.nextBoolean();
-                    tab[i][j]=tmp;
                     buttons[i][j].b=tmp;
                     buttons[i][j].setIcon();
                 }
             }
+        });
+
+
+        button1step.addActionListener(e -> {
+            step(buttons);
+        });
+
+        button5step.addActionListener(e -> {
+
+        });
+
+        button10step.addActionListener(e -> {
+
         });
 
 
