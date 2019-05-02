@@ -1,3 +1,5 @@
+package zad1;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
@@ -6,7 +8,7 @@ public class Main extends JFrame{
 
     private int w=25,h=25;
     private boolean b=false;
-    private void step(MyButton [][]buttons){
+    private void step(MyButton[][]buttons){
         int [][]ints=new int[w][h];
         boolean [][]booleans=new boolean[w][h];
 
@@ -60,7 +62,7 @@ public class Main extends JFrame{
         JButton random =new JButton("Losowy stan");upPanel.add(random);
         JButton clear =new JButton("Wyczyść");upPanel.add(clear);
 
-        MyButton [][]buttons = new MyButton[w][h];
+        MyButton[][]buttons = new MyButton[w][h];
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new GridLayout(h,w));

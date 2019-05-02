@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Gra o życie">
+    <output-path>$PROJECT_DIR$/out/artifacts/Gra_o_ycie</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="zad2.App" />
+        <option name="convertCss2Bin" value="true" />
+        <option name="description" value="" />
+        <option name="enabledSigning" value="true" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="exe" />
+        <option name="title" value="Gra o życie" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="Gra_o_ycie.jar">
+        <element id="module-output" name="Gra o życie" />
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/src/zad2/META-INF/MANIFEST.MF" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,3 +1,5 @@
+package zad2;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -17,7 +19,7 @@ public class App extends Application {
 
     private int w=25,h=25;
     private boolean b=false;
-    private void step(MyButtonFx [][]buttons){
+    private void step(MyButtonFx[][]buttons){
         int [][]ints=new int[w][h];
         boolean [][]booleans=new boolean[w][h];
 
@@ -77,26 +79,21 @@ public class App extends Application {
         MyButtonFx [][]buttons = new MyButtonFx[w][h];
 
         GridPane centerPanel = new GridPane();
+
         scene.setCenter(centerPanel);
         for(int i=0;i<w;i++){
             for(int j=0;j<h;j++){
                 MyButtonFx tmp = new MyButtonFx(i,j);
-                tmp.setOnAction(e -> {
-                    tmp.setIcon();
-                    buttons[tmp.w][tmp.h].b= tmp.b;
-                });
+                tmp.setOnAction(e -> tmp.setIcon());
                 centerPanel.add(tmp,j,i);
                 buttons[i][j]=tmp;
             }
         }
 
-        GridPane downPanel = new GridPane();
-        scene.setBottom(downPanel);
-
-        Button button1step = new Button("Jeden ruch");downPanel.add(button1step,1,0);
-        Button button5step = new Button("5 ruchów");downPanel.add(button5step,2,0);
-        Button button10step = new Button("10 ruchów");downPanel.add(button10step,3,0);
-        Button start = new Button("START");downPanel.add(start,4,0);
+        Button button1step = new Button("Jeden ruch");upPanel.add(button1step,4,0);
+        Button button5step = new Button("5 ruchów");upPanel.add(button5step,5,0);
+        Button button10step = new Button("10 ruchów");upPanel.add(button10step,6,0);
+        Button start = new Button("START");upPanel.add(start,7,0);
 
         clear.setOnAction(e -> {
             for(int i=0;i<w;i++){
@@ -131,7 +128,6 @@ public class App extends Application {
             }
         });
 
-
         start.setOnAction(e->{
             Thread thread=new Thread(()->{
                 while(true){
@@ -157,8 +153,16 @@ public class App extends Application {
             }
         });
 
+
+        for(int i=0;i<w;i++){
+            for(int j=0;j<h;j++){
+                buttons[i][j].b=true;
+                buttons[i][j].setIcon();
+            }
+        }
+
         primaryStage.setTitle("PSM6");
-        primaryStage.setScene(new Scene(scene,900,700));
+        primaryStage.setScene(new Scene(scene,1000,800));
         primaryStage.show();
     }
 }
