@@ -65,7 +65,6 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         BorderPane scene = new BorderPane();
 
-
         GridPane upPanel = new GridPane();
         upPanel.setHgap(2);
         upPanel.setVgap(2);
