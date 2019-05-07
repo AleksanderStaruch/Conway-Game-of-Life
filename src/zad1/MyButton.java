@@ -16,7 +16,7 @@ public class MyButton extends JButton {
         Border bored = BorderFactory.createLineBorder(Color.RED);
         this.setBorder(bored);
         this.setBackground(Color.WHITE);
-        this.setPreferredSize(new Dimension(30,30));
+//        this.setPreferredSize(new Dimension(30,30));
     }
 
     public void setIcon() {

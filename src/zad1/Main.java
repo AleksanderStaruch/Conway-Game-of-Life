@@ -70,10 +70,7 @@ public class Main extends JFrame{
         for(int i=0;i<w;i++){
             for(int j=0;j<h;j++){
                 MyButton tmp = new MyButton(i,j);
-                tmp.addActionListener(e -> {
-                    tmp.setIcon();
-                    buttons[tmp.w][tmp.h].b= tmp.b;
-                });
+                tmp.addActionListener(e -> tmp.setIcon());
                 centerPanel.add(tmp);
                 buttons[i][j]=tmp;
             }
