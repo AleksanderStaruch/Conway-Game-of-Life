@@ -1,4 +1,4 @@
-package zad1;
+package swing;
 
 import javax.swing.*;
 import javax.swing.border.Border;

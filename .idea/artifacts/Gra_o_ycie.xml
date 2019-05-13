@@ -14,7 +14,7 @@
     </properties>
     <root id="root">
       <element id="archive" name="Gra_o_ycie.jar">
-        <element id="module-output" name="Gra o życie" />
+        <element id="module-output" name="Conway Game of Life" />
       </element>
     </root>
   </artifact>

@@ -1,4 +1,4 @@
-package zad1;
+package swing;
 
 import javax.swing.*;
 import java.awt.*;

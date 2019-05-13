@@ -1,4 +1,4 @@
-package zad2;
+package javaFx;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
