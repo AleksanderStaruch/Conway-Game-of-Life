@@ -4,9 +4,7 @@ import javafx.scene.control.Button;
 
 public class MyButtonFx extends Button {
 
-
     boolean b;
-
 
     public MyButtonFx() {
         this.b=false;
@@ -17,12 +15,12 @@ public class MyButtonFx extends Button {
 
     public void setIcon() {
         b=!b;
-        if(!b){
-            this.setStyle("-fx-border-color: #fdff00; -fx-border-width: 2px;-fx-background-color: #fbf0ff");
+        if(b){
+            this.setStyle("-fx-border-color: #ff0000; -fx-border-width: 2px;-fx-background-color: rgba(0,0,0,0.96)");
         }else{
-            this.setStyle("-fx-border-color: #fdff00; -fx-border-width: 2px;-fx-background-color: rgba(0,0,0,0.96)");
+            this.setStyle("-fx-border-color: #ff0000; -fx-border-width: 2px;-fx-background-color: #fbf0ff");
         }
-
     }
+
 }
 
