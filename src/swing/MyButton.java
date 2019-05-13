@@ -7,25 +7,21 @@ import java.awt.*;
 public class MyButton extends JButton {
 
     boolean b;
-    int w,h;
 
-    public MyButton(int w,int h) {
+    public MyButton() {
         this.b=false;
-        this.w=w;
-        this.h=h;
         Border bored = BorderFactory.createLineBorder(Color.RED);
         this.setBorder(bored);
         this.setBackground(Color.WHITE);
-//        this.setPreferredSize(new Dimension(30,30));
     }
 
     public void setIcon() {
         b=!b;
-        if(!b){
-            this.setBackground(Color.WHITE);
-        }else{
+        if(b){
             this.setBackground(Color.BLACK);
+        }else{
+            this.setBackground(Color.WHITE);
         }
-
     }
+
 }

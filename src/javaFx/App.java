@@ -17,7 +17,7 @@ public class App extends Application {
         launch(args);
     }
 
-    private int w=25,h=25;
+    private int w=22,h=41;
     private boolean b=false;
     private void step(MyButtonFx[][]buttons){
         int [][]ints=new int[w][h];
@@ -82,7 +82,7 @@ public class App extends Application {
         scene.setCenter(centerPanel);
         for(int i=0;i<w;i++){
             for(int j=0;j<h;j++){
-                MyButtonFx tmp = new MyButtonFx(i,j);
+                MyButtonFx tmp = new MyButtonFx();
                 tmp.setOnAction(e -> tmp.setIcon());
                 centerPanel.add(tmp,j,i);
                 buttons[i][j]=tmp;

@@ -6,13 +6,10 @@ public class MyButtonFx extends Button {
 
 
     boolean b;
-    int w,h;
 
 
-    public MyButtonFx(int w, int h) {
+    public MyButtonFx() {
         this.b=false;
-        this.w=w;
-        this.h=h;
         this.setMaxWidth(5);
         this.setMaxWidth(5);
         this.setStyle("-fx-border-color: #fdff00; -fx-border-width: 2px;-fx-background-color: rgba(255,255,255,0.87)");

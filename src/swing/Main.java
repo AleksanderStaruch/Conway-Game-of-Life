@@ -69,7 +69,7 @@ public class Main extends JFrame{
         this.add(centerPanel,BorderLayout.CENTER);
         for(int i=0;i<w;i++){
             for(int j=0;j<h;j++){
-                MyButton tmp = new MyButton(i,j);
+                MyButton tmp = new MyButton();
                 tmp.addActionListener(e -> tmp.setIcon());
                 centerPanel.add(tmp);
                 buttons[i][j]=tmp;
